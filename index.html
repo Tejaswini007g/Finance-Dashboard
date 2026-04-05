@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Finance Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>💰 FinTrack</h2>
+    <ul>
+      <li onclick="showSection('dashboard')">Dashboard</li>
+      <li onclick="showSection('transactions')">Transactions</li>
+      <li onclick="showSection('insights')">Insights</li>
+    </ul>
+    <button onclick="toggleDark()">🌙 Dark Mode</button>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+
+    <!-- Header -->
+    <div class="header">
+      <h1>Finance Dashboard</h1>
+      <select id="role">
+        <option value="viewer">Viewer</option>
+        <option value="admin">Admin</option>
+      </select>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="section">
+      <div class="cards">
+        <div class="card">Balance ₹<span id="balance"></span></div>
+        <div class="card">Income ₹<span id="income"></span></div>
+        <div class="card">Expense ₹<span id="expense"></span></div>
+      </div>
+
+      <div class="charts">
+        <canvas id="lineChart"></canvas>
+        <canvas id="pieChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Transactions -->
+    <div id="transactions" class="section hidden">
+
+      <div class="form">
+        <input type="date" id="date">
+        <input type="number" id="amount" placeholder="Amount">
+        <input type="text" id="category" placeholder="Category">
+        <select id="type">
+          <option value="income">Income</option>
+          <option value="expense">Expense</option>
+        </select>
+        <button onclick="addTransaction()">Add</button>
+      </div>
+
+      <input type="text" id="search" placeholder="Search..." onkeyup="renderTable()">
+
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Category</th>
+            <th>Type</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+
+    <!-- Insights -->
+    <div id="insights" class="section hidden">
+      <h3>Insights</h3>
+      <p id="topCategory"></p>
+    </div>
+
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
